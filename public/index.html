@@ -7,8 +7,15 @@
     <title>Document</title>
 </head>
 <body>
-    Welcome to Chat App
+    <p>Welcome to Chat App</p>
+
+    <ol id="messages"></ol>
+    <form id="message-form">
+        <input name="message" type="text" placeholder="Message"/>
+        <button>Send</button>
+    </form>
 </body>
 <script src="/socket.io/socket.io.js"></script>
+<script src="/js/libs/jquery-3.4.0.min.js"></script>
 <script src="/js/index.js"></script>
 </html>
