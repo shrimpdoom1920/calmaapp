@@ -56,7 +56,7 @@ socket.on('updateUserList', function(users){
 });
 
 socket.on('newChat', function(chat){
-    // console.log('newChat', chat);
+    console.log('newChat', chat);
 
     var formatTime = moment(chat.createdAt).format('h:mm a');
     var template = jQuery('#message-template').html();
