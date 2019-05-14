@@ -26,7 +26,7 @@
     </div>
 </body>
 
-<script id="message-template" type="text/template">
+<script id="emergency-message-template" type="text/template">
     <li class="message">
         <div class="message__title">
             <h4>{{from}}</h4>
@@ -37,6 +37,24 @@
         </div>
     </li>
 </script>
+
+
+<script id="message-template" type="text/template">
+    <li class="message">
+        <div class="message__title">
+            <h4>{{from}}</h4>
+            <span>{{createdAt}}</span>
+        </div>
+        <div class="message__body">
+            <p>{{text}}</p>
+        </div>
+                                    <div class="message__footer">
+                                        <input type="radio" name="ok" value="male">Im ok, I can work<br>
+                                        <input type="radio" name="not" value="male">Im not ok, ok I need help<br>
+                                    </div>
+    </li>
+</script>
+
 
 <script id="location-message-template" type="text/template">
     <li class="message">

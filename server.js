@@ -3,7 +3,7 @@ const http = require('http');
 const path = require('path');
 const socketIO = require('socket.io');
 
-const { generateMessage, generateLocationMessage } = require('./utils/message');
+const { generateMessage, generateLocationMessage, generateEmergency } = require('./utils/message');
 const { isRealString } = require('./utils/validation');
 const { User } = require('./utils/user');
 const publicPath = path.join(__dirname, '/public');
@@ -27,6 +27,12 @@ io.on('connection', (socket)=>{
     // });
 
     // socket.broadcast.emit('newChat', generateMessage('Admin', 'New user is joined'));
+
+    socket.on('createEmergency', (emergency, callback)=> {
+        console.log('createEmergency', emergency);
+        io.emit('newEmergency', generateEmergency(emergency.from, emergency.text));
+        callback();
+    });
     
     socket.on('join',(params, callback)=> {
         if(!isRealString(params.name) || !isRealString(params.room)){
@@ -37,8 +43,8 @@ io.on('connection', (socket)=>{
         users.addUser(socket.id, params.name, params.room);
 
         io.to(params.room).emit('updateUserList', users.getUserList(params.room)); 
-        socket.emit('newChat', generateMessage('Kristine Mariano', 'Welcome to the chat app'));
-        socket.broadcast.to(params.room).emit('newChat', generateMessage('Admin', `${params.name} has joined.`));
+        socket.emit('newChat', generateMessage('Kristine Mariano', 'Emergency '));
+        // socket.broadcast.to(params.room).emit('newChat', generateMessage('Admin', `${params.name} has joined.`));
         callback();
     });
 
@@ -71,7 +77,7 @@ io.on('connection', (socket)=>{
         var user = users.removeUser(socket.id);
 
         io.to(user.room).emit('updateUserList', users.getUserList(user.room));;
-        io.to(user.room).emit('newChat', generateMessage('Admin', `${user.name} has left.`));
+        // io.to(user.room).emit('newChat', generateMessage('Admin', `${user.name} has left.`));
     });
 });
 

@@ -30,6 +30,26 @@ socket.on('disconnect', function(){
     console.log('Disconnected from server');
 });
 
+socket.emit('newEmergency', function(emergency){
+    // var formatTime = moment(emergency.createdAt).format('h:mm a');
+    console.log('newEmergency', emergency);
+    var template = jQuery('#emergency-message-template').html();
+    var html = Mustache.render(template, {
+       text: emergency.text,
+       from: emergency.from,
+    });
+
+    jQuery('#messages').append(html);
+    scrollToBottom();
+});
+
+socket.emit('createEmergency', {
+    from: 'Kristine Mariano',
+    text: 'Earthquake EMERGENCY. We are triggering a site call emergenciy due an earthquake that has hit McKinley Hill. Please respond.'
+}, function(){
+    console.log('got it');
+})
+
 socket.on('connect', function(){
     var params = jQuery.deparam(window.location.search);
 
@@ -56,7 +76,7 @@ socket.on('updateUserList', function(users){
 });
 
 socket.on('newChat', function(chat){
-    console.log('newChat', chat);
+    // console.log('newChat', chat);
 
     var formatTime = moment(chat.createdAt).format('h:mm a');
     var template = jQuery('#message-template').html();
