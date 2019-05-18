@@ -1,9 +1,11 @@
 const express = require('express');
+const mongoose = require('mongoose');
+const bodyParser = require('body-parser');
 const http = require('http');
 const path = require('path');
 const socketIO = require('socket.io');
 
-const { generateMessage, generateLocationMessage } = require('./utils/message');
+const { generateMessage, generateLocationMessage, generateEmergency } = require('./utils/message');
 const { isRealString } = require('./utils/validation');
 const { User } = require('./utils/user');
 const publicPath = path.join(__dirname, '/public');
@@ -13,8 +15,15 @@ var server = http.createServer(app);
 var io = socketIO(server);
 var users = new User();
 
+mongoose.connect('mongodb://nathan:nathan1@ds151066.mlab.com:51066/calma-app', { useNewUrlParser: true})
+        .then(console.log('MongoDB is connected'))
+        .catch((err)=> console.log(err));
 
 app.use(express.static(publicPath));
+
+//Middleware BodyParser
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
 
 
 io.on('connection', (socket)=>{
@@ -37,8 +46,8 @@ io.on('connection', (socket)=>{
         users.addUser(socket.id, params.name, params.room);
 
         io.to(params.room).emit('updateUserList', users.getUserList(params.room)); 
-        socket.emit('newChat', generateMessage('Kristine Mariano', 'Welcome to the chat app'));
-        socket.broadcast.to(params.room).emit('newChat', generateMessage('Admin', `${params.name} has joined.`));
+        socket.emit('newEmergency', generateEmergency('Kristine Mariano', 'EMERGENCY. We are triggering a site call emergenciy due an earthquake that has hit McKinley Hill'));
+        // socket.broadcast.to(params.room).emit('newChat', generateMessage('Admin', `${params.name} has joined.`));
         callback();
     });
 

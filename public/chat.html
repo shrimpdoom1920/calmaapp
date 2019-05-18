@@ -38,6 +38,23 @@
     </li>
 </script>
 
+<script id="emergency-message-template" type="text/template">
+    <li class="message">
+        <div class="message__title">
+            <h4>{{from}}</h4>
+            <span>{{createdAt}}</span>
+        </div>
+        <div class="message__body">
+            <p>{{text}}</p>
+        </div>
+        <form id="message-form">
+            <input name="work" type="radio" value="Im ok, I can work"/>
+            <input name="not" type="radio" value="Im not ok, I need help"/>
+            <button style="display: inline-block">Send</button>
+        </form>
+    </li>
+</script>
+
 <script id="location-message-template" type="text/template">
     <li class="message">
         <div class="message__title">

@@ -75,6 +75,19 @@ socket.on('newChat', function(chat){
     // jQuery('#messages').append(li);
 });
 
+socket.on('newEmergency', function(emergency){
+    var formatTime = moment(emergency.createdAt).format('h:mm a');
+    var template = jQuery('#emergency-message-template').html();
+    var html = Mustache.render(template, {
+        text: emergency.text,
+        from: emergency.from,
+        createdAt: formatTime
+    });
+
+    jQuery('#messages').append(html);
+    scrollToBottom();
+})
+
 socket.on('newLocationChat', function(chat){
     var formatTime = moment(chat.createdAt).format('h:mm a');
     var template = jQuery('#location-message-template').html();

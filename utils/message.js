@@ -8,6 +8,14 @@ const generateMessage = (from, text) => {
     }
 }
 
+const generateEmergency = (from, text)=> {
+    return{
+        from,
+        text,
+        createdAt: moment().valueOf()
+    }
+}
+
 const generateLocationMessage = (from, latitude, longitude) => {
     return{
         from,
@@ -16,4 +24,4 @@ const generateLocationMessage = (from, latitude, longitude) => {
     }
 }
 
-module.exports = { generateMessage, generateLocationMessage };
+module.exports = { generateMessage, generateLocationMessage, generateEmergency };
