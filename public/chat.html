@@ -22,6 +22,7 @@
                 <button>Send</button>
             </form>
             <button id="send-location">Send location</button>
+            <button id="send-location" onclick="location.href='/index.html'">Quit</button>
         </div>
     </div>
 </body>
@@ -48,9 +49,10 @@
             <p>{{text}}</p>
         </div>
         <form id="message-form">
-            <input name="work" type="radio" value="Im ok, I can work"/>
-            <input name="not" type="radio" value="Im not ok, I need help"/>
-            <button style="display: inline-block">Send</button>
+            <ul style="list-style: none">
+                <li><input name="work" type="radio" value="ok"/>Im ok, I can work</li>
+                <li><input name="work" type="radio" value="not"/>Im not ok, I need help</li>
+            </ul>
         </form>
     </li>
 </script>

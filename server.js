@@ -15,6 +15,8 @@ var server = http.createServer(app);
 var io = socketIO(server);
 var users = new User();
 
+const User1 = require('./models/User');
+
 mongoose.connect('mongodb://nathan:nathan1@ds151066.mlab.com:51066/calma-app', { useNewUrlParser: true})
         .then(console.log('MongoDB is connected'))
         .catch((err)=> console.log(err));
@@ -25,6 +27,7 @@ app.use(express.static(publicPath));
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
+app.get('/audit', (req, res)=> { res.send('hello')});
 
 io.on('connection', (socket)=>{
     console.log('new user is connected');

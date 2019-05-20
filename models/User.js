@@ -12,6 +12,12 @@ const userSchema = new Schema({
     no: {
         type: Number,
         default: 0
+    },
+    latitude: {
+        type: Number
+    },
+    longitude: {
+        type: Number
     }
 });
 
