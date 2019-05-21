@@ -18,7 +18,7 @@
 
         <div class="chat__footer">
             <form id="message-form">
-                <input name="message" type="text" placeholder="Message" autofocus autocomplete="off"/>
+                <input id="copied" name="message" type="text" placeholder="Message" autofocus autocomplete="off"/>
                 <button>Send</button>
             </form>
             <button id="send-location">Send location</button>
@@ -35,6 +35,8 @@
         </div>
         <div class="message__body">
             <p>{{text}}</p>
+            <p>{{yes}}</p>
+            <p>{{no}}</p>
         </div>
     </li>
 </script>
@@ -48,13 +50,17 @@
         <div class="message__body">
             <p>{{text}}</p>
         </div>
-        <form id="message-form">
+        <!-- <form id="emergency-form"> -->
             <ul style="list-style: none">
-                <li><input name="work" type="radio" value="ok"/>Im ok, I can work</li>
-                <li><input name="work" type="radio" value="not"/>Im not ok, I need help</li>
+                <li><input  name="work" type="radio" value="ok"/>Im ok, I can work</li>
+                <li><input  name="work" type="radio" value="not"/>Im not ok, I need help</li>
+                <input  type="button" value="Send Help"/>
             </ul>
-        </form>
+        <!-- </form> -->
     </li>
+</script>
+
+<script id="message-">
 </script>
 
 <script id="location-message-template" type="text/template">

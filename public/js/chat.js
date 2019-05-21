@@ -126,6 +126,26 @@ jQuery("#message-form").on('submit', function(event){
     });
 });
 
+// $(document).ready(function(){
+//     $('#copy').click(function(){
+//         $('#copied').val($('#copy').val() );
+//     });
+// });
+
+$(document).ready(function(){
+    $("input[type='button']").click(function(){
+        var radioValue = $("input[name='work']:checked").val();
+        if(radioValue){
+            alert("Your are a - " + radioValue);
+        }
+    });
+});
+
+// jQuery("#emergency-form").on('submit', function(event){
+//     event.preventDefault();
+
+//     var checkBox = jQuery('')
+// });
 
 var locationButton = jQuery('#send-location');
 locationButton.on('click', function(){
