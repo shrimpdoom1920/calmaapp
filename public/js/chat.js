@@ -136,9 +136,9 @@ $(document).ready(function(){
     $("input[type='button']").click(function(){
         var radioValue = $("input[name='work']:checked").val();
         if(radioValue){
-            alert("Your are a - " + radioValue);
+            console.log(radioValue);
         }
-    });
+    }); 
 });
 
 // jQuery("#emergency-form").on('submit', function(event){

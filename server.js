@@ -50,7 +50,7 @@ io.on('connection', (socket)=>{
 
         io.to(params.room).emit('updateUserList', users.getUserList(params.room)); 
         socket.emit('newEmergency', generateEmergency('Kristine Mariano', 'EMERGENCY. We are triggering a site call emergenciy due an earthquake that has hit McKinley Hill'));
-        // socket.broadcast.to(params.room).emit('newChat', generateMessage('Admin', `${params.name} has joined.`));
+        socket.broadcast.to(params.room).emit('newChat', generateMessage('Admin', `${params.name} has joined.`));
         callback();
     });
 
