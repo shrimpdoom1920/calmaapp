@@ -1,5 +1,7 @@
+//Socket set-up for client 
 var socket = io();
 
+//Function for optimize content in the message box
 function scrollToBottom (){
     //Selectors
     var messages = jQuery('#messages');
@@ -20,11 +22,6 @@ function scrollToBottom (){
 
 socket.on('connect', function(){
     console.log('Connected to server');
-
-    // socket.emit('newChat', {
-    //     from: 'Nathan',
-    //     text: 'Hi, i need to get my steam account back'
-    // });
 });
 socket.on('disconnect', function(){
     console.log('Disconnected from server');
@@ -68,11 +65,7 @@ socket.on('newChat', function(chat){
 
     jQuery('#messages').append(html);
     scrollToBottom();
-    // var formatTime = moment(chat.createdAt).format('h:mm a');
-    // var li = jQuery('<li></li>');
-    // li.text(`${chat.from}: ${formatTime} ${chat.text}`);
-
-    // jQuery('#messages').append(li);
+    
 });
 
 socket.on('newEmergency', function(emergency){
@@ -97,23 +90,11 @@ socket.on('newLocationChat', function(chat){
         createdAt: formatTime,
     });
 
-    // var li = jQuery('<li></li>');
-    // var a = jQuery('<a target="_blank">My Current Location </a>');
-
-    // li.text(`${chat.from} ${formatTime}: `);
-    // a.attr('href', chat.url);
-    // li.append(a);
-
     jQuery('#messages').append(html);
     scrollToBottom();
 });
 
-// socket.emit('createChat', {
-//     from: 'Nathan',
-//     text: 'I\'ve\ retrieved back my steam account this morning'
-// }, function(data){
-//     console.log('Got it', data);
-// });
+
 
 jQuery("#message-form").on('submit', function(event){
     event.preventDefault(); 
@@ -126,11 +107,6 @@ jQuery("#message-form").on('submit', function(event){
     });
 });
 
-// $(document).ready(function(){
-//     $('#copy').click(function(){
-//         $('#copied').val($('#copy').val() );
-//     });
-// });
 
 $(document).ready(function(){
     $("input[type='button']").click(function(){
@@ -141,11 +117,7 @@ $(document).ready(function(){
     }); 
 });
 
-// jQuery("#emergency-form").on('submit', function(event){
-//     event.preventDefault();
 
-//     var checkBox = jQuery('')
-// });
 
 var locationButton = jQuery('#send-location');
 locationButton.on('click', function(){

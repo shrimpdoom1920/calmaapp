@@ -1,6 +1,17 @@
+//Library for getting formatted time
 const moment = require('moment');
 
-const generateMessage = (from, text, yes, no) => {
+// function for referencing message
+const generateMessage = (from, text) => {
+    return{
+        from,
+        text,
+        createdAt: moment().valueOf()
+    }
+}
+
+/// function for referencing Emergency message
+const generateEmergency = (from, text, yes, no)=> {
     return{
         from,
         text,
@@ -10,14 +21,7 @@ const generateMessage = (from, text, yes, no) => {
     }
 }
 
-const generateEmergency = (from, text)=> {
-    return{
-        from,
-        text,
-        createdAt: moment().valueOf()
-    }
-}
-
+// function for referencing the geolocation
 const generateLocationMessage = (from, latitude, longitude) => {
     return{
         from,
